@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I, Vision Coaching Classes | Gaur City 2, Greater Noida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy2: #0F1F3D;
+    --gold: #F5A623;
+    --gold2: #FFD166;
+    --sky: #4FC3F7;
+    --white: #FFFFFF;
+    --off: #F0F4FF;
+    --muted: #8A9BBF;
+    --card: #111D35;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--navy2); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6%;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(245,166,35,0.15);
+    transition: all 0.3s;
+  }
+  .logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: 22px; color: var(--navy); letter-spacing: -1px;
+    box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+  }
+  .logo-text { line-height: 1.1; }
+  .logo-text span:first-child { display:block; font-family:'Playfair Display',serif; font-weight:700; font-size:17px; color:var(--white); }
+  .logo-text span:last-child { font-size:11px; color:var(--muted); font-weight:500; letter-spacing:1.5px; text-transform:uppercase; }
+  .nav-links { display:flex; gap:34px; list-style:none; }
+  .nav-links a { color: var(--muted); text-decoration:none; font-size:14px; font-weight:500; letter-spacing:0.5px; transition:color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    padding: 10px 24px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--navy); font-weight:700; font-size:13px;
+    text-decoration:none; letter-spacing:0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(245,166,35,0.35);
+  }
+  .nav-cta:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(245,166,35,0.5); }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--white); border-radius:2px; transition:all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; position: relative;
+    display: flex; align-items: center;
+    padding: 120px 6% 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset:0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(79,195,247,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(245,166,35,0.08) 0%, transparent 60%),
+                linear-gradient(180deg, var(--navy) 0%, var(--navy2) 100%);
+  }
+  .hero-grid {
+    position: absolute; inset:0; opacity: 0.035;
+    background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-orb1 {
+    position:absolute; width:500px; height:500px; border-radius:50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+    right: -100px; top: 50px; animation: float 6s ease-in-out infinite;
+  }
+  .hero-orb2 {
+    position:absolute; width:300px; height:300px; border-radius:50%;
+    background: radial-gradient(circle, rgba(79,195,247,0.1) 0%, transparent 70%);
+    left: 30%; bottom: 0; animation: float 8s ease-in-out infinite reverse;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+  .hero-content { position:relative; z-index:2; max-width:700px; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.3);
+    border-radius: 100px; padding: 7px 16px; margin-bottom: 28px;
+    font-size:12px; font-weight:600; color:var(--gold); letter-spacing:1px; text-transform:uppercase;
+    animation: slideIn 0.8s ease both;
+  }
+  .hero-badge::before { content:'✦'; font-size:10px; }
+  @keyframes slideIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5.5vw, 72px);
+    font-weight: 900; line-height: 1.08;
+    color: var(--white); margin-bottom: 24px;
+    animation: slideIn 0.8s 0.15s ease both;
+  }
+  .hero h1 em { font-style:normal; color:var(--gold); position:relative; }
+  .hero h1 em::after {
+    content:''; position:absolute; left:0; bottom:-4px;
+    width:100%; height:3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    border-radius:2px;
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--muted); line-height: 1.75;
+    max-width:520px; margin-bottom: 40px;
+    animation: slideIn 0.8s 0.3s ease both;
+  }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; animation: slideIn 0.8s 0.45s ease both; }
+  .btn-primary {
+    padding: 15px 32px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+    color: var(--navy); font-weight: 700; font-size: 15px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 6px 24px rgba(245,166,35,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow: 0 12px 32px rgba(245,166,35,0.5); }
+  .btn-secondary {
+    padding: 15px 32px; border-radius: 10px;
+    border: 1.5px solid rgba(255,255,255,0.2); color: var(--white);
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s; backdrop-filter:blur(4px);
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* hero floaters */
+  .hero-float {
+    position:absolute; right:6%; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:16px; z-index:2;
+    animation: slideIn 0.8s 0.6s ease both;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 16px; padding: 18px 22px; min-width: 200px;
+    transition: transform 0.3s;
+  }
+  .hero-card:hover { transform:translateX(-6px); }
+  .hero-card .hc-val { font-family:'Space Mono',monospace; font-size:28px; font-weight:700; color:var(--gold); }
+  .hero-card .hc-lbl { font-size:12px; color:var(--muted); margin-top:3px; }
+
+  /* ── STATS ── */
+  #stats {
+    padding: 60px 6%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  }
+  .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+  .stat-item {
+    text-align:center; padding: 28px 20px;
+    background: rgba(255,255,255,0.1); border-radius:12px;
+    margin: 4px;
+  }
+  .stat-val { font-family:'Playfair Display',serif; font-size: 42px; font-weight:900; color:var(--navy); }
+  .stat-lbl { font-size:13px; font-weight:600; color:var(--navy); opacity:0.7; margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
+
+  /* ── SECTIONS shared ── */
+  section { padding: 90px 6%; }
+  .section-tag {
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:2.5px;
+    text-transform:uppercase; color:var(--gold);
+    border-left: 3px solid var(--gold); padding-left:12px;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family:'Playfair Display',serif; font-size: clamp(30px, 3.5vw, 46px);
+    font-weight:800; color:var(--white); line-height:1.15; margin-bottom:16px;
+  }
+  .section-sub { font-size:16px; color:var(--muted); line-height:1.7; max-width:560px; }
+
+  /* ── COURSES ── */
+  #courses { background: var(--navy2); }
+  .courses-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:24px; margin-top:56px; }
+  .course-card {
+    background: var(--card); border-radius:20px; padding:32px 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    position:relative; overflow:hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .course-card::before {
+    content:''; position:absolute; inset:0; border-radius:20px;
+    background: linear-gradient(135deg, rgba(245,166,35,0.06), transparent);
+    opacity:0; transition:opacity 0.3s;
+  }
+  .course-card:hover { transform:translateY(-8px); border-color:rgba(245,166,35,0.3); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+  .course-card:hover::before { opacity:1; }
+  .course-icon {
+    width:54px; height:54px; border-radius:14px; margin-bottom:22px;
+    display:flex; align-items:center; justify-content:center; font-size:24px;
+  }
+  .course-card h3 { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; margin-bottom:10px; }
+  .course-card p { font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:20px; }
+  .course-tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag {
+    font-size:11px; font-weight:600; padding:5px 12px; border-radius:100px;
+    background: rgba(255,255,255,0.07); color:var(--muted); letter-spacing:0.5px;
+  }
+  .course-num {
+    position:absolute; right:24px; top:24px;
+    font-family:'Space Mono',monospace; font-size:12px; color:rgba(255,255,255,0.1);
+    font-weight:700;
+  }
+
+  /* ── WHY US ── */
+  #why { background: var(--navy); }
+  .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; margin-top:56px; }
+  .why-visual {
+    position:relative; height:520px;
+  }
+  .why-main-card {
+    position:absolute; left:0; top:50%; transform:translateY(-50%);
+    width:80%; background:var(--card); border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px; padding:36px 32px;
+    box-shadow: 30px 30px 60px rgba(0,0,0,0.5);
+  }
+  .why-main-card h3 { font-family:'Playfair Display',serif; font-size:24px; margin-bottom:12px; }
+  .why-main-card p { font-size:14px; color:var(--muted); line-height:1.75; }
+  .why-badge-card {
+    position:absolute; right:0; top:30px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    border-radius:20px; padding:22px 24px; width:55%;
+    box-shadow: 10px 20px 40px rgba(245,166,35,0.35);
+  }
+  .why-badge-card .big { font-family:'Playfair Display',serif; font-size:42px; font-weight:900; color:var(--navy); }
+  .why-badge-card .sm { font-size:13px; font-weight:700; color:var(--navy); opacity:0.75; margin-top:2px; }
+  .why-badge2 {
+    position:absolute; right:20px; bottom:40px;
+    background:var(--card); border:1px solid rgba(79,195,247,0.25);
+    border-radius:16px; padding:16px 20px; text-align:center;
+    width:45%;
+  }
+  .why-badge2 .v { font-family:'Space Mono',monospace; font-size:22px; color:var(--sky); font-weight:700; }
+  .why-badge2 .l { font-size:11px; color:var(--muted); margin-top:3px; }
+
+  .features-list { display:flex; flex-direction:column; gap:22px; }
+  .feat-item { display:flex; gap:18px; align-items:flex-start; }
+  .feat-icon {
+    width:46px; height:46px; border-radius:12px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+    background: rgba(245,166,35,0.12); border:1px solid rgba(245,166,35,0.2);
+  }
+  .feat-item h4 { font-size:16px; font-weight:700; margin-bottom:5px; }
+  .feat-item p { font-size:14px; color:var(--muted); line-height:1.65; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--navy2); }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+  .testi-card {
+    background:var(--card); border-radius:20px; padding:30px 26px;
+    border:1px solid rgba(255,255,255,0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .testi-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,0.35); }
+  .stars { color:var(--gold); font-size:15px; letter-spacing:2px; margin-bottom:16px; }
+  .testi-text { font-size:14px; color:#B0BDD4; line-height:1.8; margin-bottom:22px; font-style:italic; }
+  .testi-author { display:flex; align-items:center; gap:12px; }
+  .testi-avatar {
+    width:42px; height:42px; border-radius:50%;
+    background: linear-gradient(135deg, var(--gold), var(--sky));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:var(--navy);
+  }
+  .testi-name { font-weight:700; font-size:14px; }
+  .testi-class { font-size:12px; color:var(--muted); }
+
+  /* ── FACULTY ── */
+  #faculty { background: var(--navy); }
+  .faculty-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:56px; }
+  .faculty-card {
+    background:var(--card); border-radius:20px; padding:32px 24px; text-align:center;
+    border:1px solid rgba(255,255,255,0.07);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .faculty-card:hover { transform:translateY(-8px); border-color:rgba(245,166,35,0.3); }
+  .faculty-avatar {
+    width:80px; height:80px; border-radius:50%; margin:0 auto 18px;
+    background: linear-gradient(135deg, var(--gold) 0%, rgba(79,195,247,0.8) 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--navy);
+    border: 3px solid rgba(245,166,35,0.3);
+  }
+  .faculty-card h3 { font-family:'Playfair Display',serif; font-size:20px; margin-bottom:4px; }
+  .faculty-card .subj { font-size:12px; color:var(--gold); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+  .faculty-card p { font-size:13px; color:var(--muted); line-height:1.7; }
+
+  /* ── ENROLL CTA ── */
+  #enroll {
+    padding: 100px 6%; text-align:center;
+    background: linear-gradient(135deg, #0A1628 0%, #0F2550 50%, #0A1628 100%);
+    position:relative; overflow:hidden;
+  }
+  #enroll::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(245,166,35,0.06), transparent);
+  }
+  #enroll h2 { font-family:'Playfair Display',serif; font-size:clamp(30px,4vw,52px); font-weight:900; margin-bottom:18px; position:relative; }
+  #enroll p { font-size:17px; color:var(--muted); margin-bottom:44px; position:relative; }
+  .enroll-form {
+    display:flex; gap:12px; max-width:480px; margin:0 auto;
+    position:relative; flex-wrap:wrap; justify-content:center;
+  }
+  .enroll-form input {
+    flex:1; min-width:220px; padding:15px 20px; border-radius:10px;
+    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);
+    color:var(--white); font-size:14px; font-family:'DM Sans',sans-serif;
+    outline:none; transition:border-color 0.2s;
+  }
+  .enroll-form input:focus { border-color:var(--gold); }
+  .enroll-form input::placeholder { color:var(--muted); }
+  .enroll-form button {
+    padding:15px 28px; border-radius:10px; border:none; cursor:pointer;
+    background:linear-gradient(135deg, var(--gold), var(--gold2));
+    color:var(--navy); font-weight:700; font-size:14px; font-family:'DM Sans',sans-serif;
+    box-shadow:0 6px 20px rgba(245,166,35,0.4);
+    transition:transform 0.2s, box-shadow 0.2s;
+    white-space:nowrap;
+  }
+  .enroll-form button:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(245,166,35,0.55); }
+
+  /* ── CONTACT ── */
+  #contact { background:var(--navy2); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:60px; margin-top:56px; align-items:start; }
+  .contact-info { display:flex; flex-direction:column; gap:28px; }
+  .contact-item { display:flex; gap:16px; align-items:flex-start; }
+  .contact-icon {
+    width:46px; height:46px; border-radius:12px; flex-shrink:0;
+    background:rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.2);
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .contact-item h4 { font-size:14px; font-weight:700; margin-bottom:4px; }
+  .contact-item p, .contact-item a { font-size:14px; color:var(--muted); text-decoration:none; line-height:1.6; transition:color 0.2s; }
+  .contact-item a:hover { color:var(--gold); }
+  .map-embed {
+    border-radius:20px; overflow:hidden; height:300px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:var(--card); display:flex; align-items:center; justify-content:center;
+  }
+  .map-embed iframe { width:100%; height:100%; border:0; filter:invert(0.88) hue-rotate(180deg) saturate(0.7); }
+
+  /* ── FOOTER ── */
+  footer {
+    background:var(--navy); border-top:1px solid rgba(255,255,255,0.07);
+    padding:50px 6% 30px;
+  }
+  .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:50px; margin-bottom:40px; }
+  .footer-about p { font-size:14px; color:var(--muted); line-height:1.75; margin-top:16px; max-width:300px; }
+  footer h4 { font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--white); margin-bottom:18px; }
+  footer ul { list-style:none; display:flex; flex-direction:column; gap:11px; }
+  footer ul a { font-size:14px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  footer ul a:hover { color:var(--gold); }
+  .footer-bottom {
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:1px solid rgba(255,255,255,0.07); padding-top:24px;
+    font-size:13px; color:var(--muted); flex-wrap:wrap; gap:12px;
+  }
+  .footer-bottom span { color:var(--gold); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position:fixed; bottom:28px; right:28px; z-index:9999;
+    width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(135deg,#25D366,#128C7E);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 24px rgba(37,211,102,0.5);
+    text-decoration:none; font-size:26px;
+    animation: pulse 2.5s infinite;
+    transition:transform 0.2s;
+  }
+  .wa-float:hover { transform:scale(1.1); }
+  @keyframes pulse { 0%,100%{box-shadow:0 6px 24px rgba(37,211,102,0.5)} 50%{box-shadow:0 8px 32px rgba(37,211,102,0.8)} }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:1024px) {
+    .courses-grid,.testi-grid,.faculty-grid { grid-template-columns:1fr 1fr; }
+    .why-grid { grid-template-columns:1fr; }
+    .why-visual { display:none; }
+    .hero-float { display:none; }
+    .contact-grid { grid-template-columns:1fr; }
+  }
+  @media(max-width:768px) {
+    .nav-links,.nav-cta { display:none; }
+    .hamburger { display:flex; }
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .courses-grid,.testi-grid,.faculty-grid,.footer-grid { grid-template-columns:1fr; }
+    nav { padding:16px 5%; }
+    #hero { padding:100px 5% 70px; }
+    section { padding:70px 5%; }
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:0.1s; }
+  .reveal-delay-2 { transition-delay:0.2s; }
+  .reveal-delay-3 { transition-delay:0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">IV</div>
+    <div class="logo-text">
+      <span>I, Vision</span>
+      <span>Coaching Classes</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#faculty">Faculty</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+919999999999" class="nav-cta">📞 Call Now</a>
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Gaur City 2 · Greater Noida · Est. 2018</div>
+    <h1>Where <em>Vision</em> Meets<br>Academic Excellence</h1>
+    <p class="hero-sub">Top-ranked coaching classes in Gaur City 2 for Classes 6–12, JEE, NEET & competitive exams. Small batches. Expert faculty. Proven results.</p>
+    <div class="hero-btns">
+      <a href="#enroll" class="btn-primary">🎯 Enroll Now — Free Demo</a>
+      <a href="#courses" class="btn-secondary">Explore Courses →</a>
+    </div>
+  </div>
+  <div class="hero-float">
+    <div class="hero-card">
+      <div class="hc-val">98%</div>
+      <div class="hc-lbl">Board Result Rate</div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-val">500+</div>
+      <div class="hc-lbl">Students Placed</div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-val">⭐ 4.9</div>
+      <div class="hc-lbl">Google Rating</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-val" data-target="500">0+</div>
+      <div class="stat-lbl">Students Enrolled</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-val" data-target="7">0+</div>
+      <div class="stat-lbl">Years of Excellence</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-val" data-target="98">0%</div>
+      <div class="stat-lbl">Success Rate</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-val" data-target="15">0+</div>
+      <div class="stat-lbl">Expert Faculty</div>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section id="courses">
+  <p class="section-tag reveal">What We Offer</p>
+  <h2 class="section-title reveal">Courses Designed<br>for Every Ambition</h2>
+  <p class="section-sub reveal">Whether you're targeting top boards or prestigious entrance exams — we have a curriculum built for your goal.</p>
+  <div class="courses-grid">
+    <div class="course-card reveal">
+      <div class="course-num">01</div>
+      <div class="course-icon" style="background:rgba(79,195,247,0.12)">🏫</div>
+      <h3>Foundation (6–8)</h3>
+      <p>Build a rock-solid academic base in Maths & Science. Concept-first approach that prepares students for higher competitive exams early.</p>
+      <div class="course-tags">
+        <span class="tag">Maths</span><span class="tag">Science</span><span class="tag">English</span>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-1">
+      <div class="course-num">02</div>
+      <div class="course-icon" style="background:rgba(245,166,35,0.12)">📚</div>
+      <h3>Board Prep (9–12)</h3>
+      <p>CBSE & ICSE board mastery with chapter-wise tests, previous year papers, and regular mock exams to maximize scores.</p>
+      <div class="course-tags">
+        <span class="tag">CBSE</span><span class="tag">ICSE</span><span class="tag">PCM / PCB</span>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-2">
+      <div class="course-num">03</div>
+      <div class="course-icon" style="background:rgba(255,100,100,0.12)">🔬</div>
+      <h3>JEE / NEET</h3>
+      <p>Intensive preparation for JEE Mains, Advanced and NEET-UG. Concept clarity + problem-solving + all-India level mock tests.</p>
+      <div class="course-tags">
+        <span class="tag">Physics</span><span class="tag">Chemistry</span><span class="tag">Maths/Bio</span>
+      </div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-num">04</div>
+      <div class="course-icon" style="background:rgba(167,119,227,0.12)">🏛️</div>
+      <h3>Competitive Exams</h3>
+      <p>Focused coaching for NTSE, Olympiads, NDA, SSC & Banking. Strategy-driven approach with current affairs integration.</p>
+      <div class="course-tags">
+        <span class="tag">NTSE</span><span class="tag">Olympiad</span><span class="tag">SSC</span>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-1">
+      <div class="course-num">05</div>
+      <div class="course-icon" style="background:rgba(0,220,150,0.12)">💻</div>
+      <h3>Online Batches</h3>
+      <p>Live interactive classes accessible from home. Recorded sessions, digital study material, and online doubt clearing included.</p>
+      <div class="course-tags">
+        <span class="tag">Live Classes</span><span class="tag">Recordings</span><span class="tag">E-Notes</span>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-2">
+      <div class="course-num">06</div>
+      <div class="course-icon" style="background:rgba(245,166,35,0.12)">🎯</div>
+      <h3>Crash Courses</h3>
+      <p>Targeted 30–60 day intensive programs for exam season. Smart revision, high-yield topics, and daily practice papers.</p>
+      <div class="course-tags">
+        <span class="tag">Pre-Board</span><span class="tag">Revision</span><span class="tag">Speed Tests</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <p class="section-tag reveal">Our Difference</p>
+  <h2 class="section-title reveal">Why Thousands of<br>Parents Choose Us</h2>
+  <div class="why-grid">
+    <div class="why-visual">
+      <div class="why-badge-card">
+        <div class="big">98%</div>
+        <div class="sm">Board Exam Pass Rate 2024</div>
+      </div>
+      <div class="why-main-card">
+        <h3>Small Batches, Big Impact</h3>
+        <p>We cap each batch at 15–20 students to ensure every student gets personal attention, regular doubt sessions, and tracked progress.</p>
+      </div>
+      <div class="why-badge2">
+        <div class="v">⭐ 4.9</div>
+        <div class="l">Google Reviews</div>
+      </div>
+    </div>
+    <div class="features-list">
+      <div class="feat-item reveal">
+        <div class="feat-icon">👨‍🏫</div>
+        <div>
+          <h4>Expert & Experienced Faculty</h4>
+          <p>Our teachers are IIT/NIT alumni and post-graduates with 10+ years of coaching experience, passionate about student success.</p>
+        </div>
+      </div>
+      <div class="feat-item reveal reveal-delay-1">
+        <div class="feat-icon">📊</div>
+        <div>
+          <h4>Performance Tracking</h4>
+          <p>Regular tests, detailed report cards, and parent-teacher meetings to keep every student on the right growth trajectory.</p>
+        </div>
+      </div>
+      <div class="feat-item reveal reveal-delay-2">
+        <div class="feat-icon">🕐</div>
+        <div>
+          <h4>Flexible Timing & Batches</h4>
+          <p>Morning, evening and weekend batches available. We work around your child's school schedule, not against it.</p>
+        </div>
+      </div>
+      <div class="feat-item reveal reveal-delay-3">
+        <div class="feat-icon">📱</div>
+        <div>
+          <h4>Parent Communication App</h4>
+          <p>Real-time updates via WhatsApp groups — attendance, test scores, and homework reminders sent directly to parents.</p>
+        </div>
+      </div>
+      <div class="feat-item reveal">
+        <div class="feat-icon">🏆</div>
+        <div>
+          <h4>Proven Track Record</h4>
+          <p>500+ students have achieved top results in Boards, JEE, and NEET from our center. Our results speak louder than promises.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-tag reveal">Student Stories</p>
+  <h2 class="section-title reveal">What Our Students Say</h2>
+  <p class="section-sub reveal">Real words from students and parents who experienced the I, Vision difference.</p>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"I scored 95% in Class 12 boards. The faculty here explains every concept with such clarity — I never had to go anywhere else for doubts. Best coaching in Gaur City 2 without a doubt!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Anjali Sharma</div>
+          <div class="testi-class">Class 12 · PCM · 95%</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"My son cleared JEE Mains on his first attempt after joining I, Vision. The problem-solving sessions and weekly mock tests were the game changers for his preparation."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Rajesh Verma (Parent)</div>
+          <div class="testi-class">JEE Mains 2024 · Qualified</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Joined in Class 9 and the foundation they built helped me throughout. The teachers know every student personally and care about progress. Highly recommend to all Gaur City families!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div>
+          <div class="testi-name">Priya Gupta</div>
+          <div class="testi-class">Class 10 Boards · 92%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section id="faculty">
+  <p class="section-tag reveal">Meet the Mentors</p>
+  <h2 class="section-title reveal">Exceptional Faculty,<br>Exceptional Results</h2>
+  <div class="faculty-grid">
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar">S</div>
+      <h3>Mr. Sunil Kumar</h3>
+      <div class="subj">Mathematics</div>
+      <p>M.Sc. Maths, IIT Delhi alumni. 12+ years of coaching JEE & board students. Known for making complex calculus simple and fun.</p>
+    </div>
+    <div class="faculty-card reveal reveal-delay-1">
+      <div class="faculty-avatar">N</div>
+      <h3>Ms. Neha Singh</h3>
+      <div class="subj">Physics & Chemistry</div>
+      <p>Post-Graduate in Physics, 10 years of experience. Specializes in conceptual learning for NEET and board exam preparation.</p>
+    </div>
+    <div class="faculty-card reveal reveal-delay-2">
+      <div class="faculty-avatar">A</div>
+      <h3>Mr. Amit Tiwari</h3>
+      <div class="subj">Biology & Science</div>
+      <p>B.Sc. Biology, NEET specialist with 8 years experience. Combines visual diagrams and mnemonics for effortless retention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENROLL CTA -->
+<section id="enroll">
+  <h2 class="reveal">Ready to Begin Your <span style="color:var(--gold)">Success Story?</span></h2>
+  <p class="reveal">Book your FREE demo class today — no commitment, just clarity.</p>
+  <div class="enroll-form reveal">
+    <input type="tel" placeholder="📱 Your Phone Number" maxlength="10">
+    <button onclick="handleEnroll()">Book Free Demo →</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-tag reveal">Find Us</p>
+  <h2 class="section-title reveal">Visit Our Center</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item reveal">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>907, Galaxy North Ave 2,<br>Gaur City 2, Greater Noida West,<br>Uttar Pradesh – 201009</p>
+        </div>
+      </div>
+      <div class="contact-item reveal reveal-delay-1">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <a href="tel:+919999999999">+91 99999 99999</a><br>
+          <a href="tel:+919999999998">+91 99999 99998</a>
+        </div>
+      </div>
+      <div class="contact-item reveal reveal-delay-2">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <h4>Timings</h4>
+          <p>Mon – Sat: 8:00 AM – 9:00 PM<br>Sunday: 9:00 AM – 1:00 PM</p>
+        </div>
+      </div>
+      <div class="contact-item reveal reveal-delay-3">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:info@ivisionclasses.com">info@ivisionclasses.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-embed reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.5!2d77.437!3d28.635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cefd8aa00132f%3A0x696e0a7f6876f29b!2sI%2C%20Vision%20Coaching%20Classes!5e0!3m2!1sen!2sin!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about">
+      <a href="#" class="logo">
+        <div class="logo-icon">IV</div>
+        <div class="logo-text">
+          <span>I, Vision</span>
+          <span>Coaching Classes</span>
+        </div>
+      </a>
+      <p>Nurturing bright minds in Gaur City 2 since 2018. Our mission is to make every student realize their full academic potential with guidance, discipline, and care.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#courses">Our Courses</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#faculty">Our Faculty</a></li>
+        <li><a href="#testimonials">Student Results</a></li>
+        <li><a href="#enroll">Enroll Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#">Foundation (6–8)</a></li>
+        <li><a href="#">Board Prep (9–12)</a></li>
+        <li><a href="#">JEE / NEET</a></li>
+        <li><a href="#">Competitive Exams</a></li>
+        <li><a href="#">Online Batches</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 I, Vision Coaching Classes, Gaur City 2. All rights reserved.</span>
+    <span>Made with ❤️ by <span>OnlineLao</span></span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20know%20about%20your%20coaching%20classes" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounters() {
+    document.querySelectorAll('.stat-val[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.textContent.replace(/[0-9]/g,'');
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current += step;
+        if(current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current) + suffix;
+      }, 25);
+    });
+  }
+  const statsSection = document.getElementById('stats');
+  const statsObserver = new IntersectionObserver((entries) => {
+    if(entries[0].isIntersecting) { animateCounters(); statsObserver.disconnect(); }
+  }, { threshold: 0.4 });
+  statsObserver.observe(statsSection);
+
+  // Enroll button
+  function handleEnroll() {
+    const input = document.querySelector('.enroll-form input');
+    const val = input.value.trim();
+    if(val.length === 10 && /^\d+$/.test(val)) {
+      window.open('https://wa.me/919999999999?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20demo%20class.%20My%20number%3A%20+91' + val, '_blank');
+      input.value = '';
+    } else {
+      input.style.borderColor = '#FF6B6B';
+      input.placeholder = '⚠️ Enter valid 10-digit number';
+      setTimeout(() => { input.style.borderColor = ''; input.placeholder = '📱 Your Phone Number'; }, 2500);
+    }
+  }
+  document.querySelector('.enroll-form input').addEventListener('keydown', e => { if(e.key === 'Enter') handleEnroll(); });
+
+  // Scroll nav
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.background = window.scrollY > 50 
+      ? 'rgba(10,22,40,0.97)' : 'rgba(10,22,40,0.85)';
+  });
+</script>
+</body>
+</html>
